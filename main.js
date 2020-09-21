@@ -66,7 +66,7 @@ let data = [
   { firstName: 'Sandra', lastName: 'Mathers' },
 ];
 
-let getDataPromise = function (){
+let getDataPromise = function (arr){
   
   return  new Promise((resolve, reject) => {
     let error = false;
@@ -75,11 +75,11 @@ let getDataPromise = function (){
     }
 
     setTimeout(() => {
-      resolve(data)
+      resolve(arr)
     }, 4000)
   })
-  .then((data) => {
-    data.forEach(x => {
+  .then((arr) => {
+    arr.forEach(x => {
       console.log(`Hello ${x.firstName} ${x.lastName}`)
     });
   })
@@ -88,4 +88,4 @@ let getDataPromise = function (){
   })
 }
 
-getDataPromise()
+getDataPromise(data)
