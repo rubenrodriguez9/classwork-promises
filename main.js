@@ -1,6 +1,5 @@
 // 1.
 // Create a promise called myFirstPromise
-
 // Inside the promise
 // Create a boolean variable check and set it to true
 // Create a variable rand and it should calculate a random number between 1 and 10
@@ -23,6 +22,28 @@
 // that says `Here is the result of my random number multiplied
 // by 5: < place number result here>`
 
+let myFirstPromise = new Promise((resolve, reject) => {
+  let check = true;
+  let rand = Math.floor((Math.random() * 10) + 1)
+  if(check){
+    setTimeout(() =>{
+      resolve(rand)
+    }, 2000)
+  }else setTimeout(() => {
+    reject("Cannot computer random number")
+  }, 2000)
+})
+
+myFirstPromise.then((num)=>{
+  console.log(`I have my random number ${num} and I will multiply it by 5`)
+   return num * 5
+
+})
+
+.then((num) => {
+  console.log(`Here is the result of my random number multiplied by 5: ${num}`)
+})
+
 
 
 
@@ -44,3 +65,27 @@ let data = [
   { firstName: 'Doug', lastName: 'Lawson' },
   { firstName: 'Sandra', lastName: 'Mathers' },
 ];
+
+let getDataPromise = function (){
+  
+  return  new Promise((resolve, reject) => {
+    let error = false;
+    if(error){
+      reject('Something went wrong')
+    }
+
+    setTimeout(() => {
+      resolve(data)
+    }, 4000)
+  })
+  .then((data) => {
+    data.forEach(x => {
+      console.log(`Hello ${x.firstName} ${x.lastName}`)
+    });
+  })
+  .catch(() => {
+    console.log('something bad happened')
+  })
+}
+
+getDataPromise()
